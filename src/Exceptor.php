@@ -4,7 +4,7 @@ namespace Bermuda\Exceptor;
 
 use Throwable;
 
-class Exception extends \Exception
+trait Exceptor
 {
     public static function make(string $format, string ...$values): self
     {
