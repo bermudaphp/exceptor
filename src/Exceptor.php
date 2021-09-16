@@ -15,33 +15,28 @@ trait Exceptor
     {
         return new static($msg, $code, $prev);
     }
-
+    
     public function withCode(int $code): self
     {
-        $copy = clone $this;
-        $copy->code = $code;
-
-        return $copy;
-    }
-
-    public function withFile(string $file): self
-    {
-        $copy = clone $this;
-        $copy->file = $file;
-
-        return $copy;
-    }
-
-    public function withLine(int $line): self
-    {
-        $copy = clone $this;
-        $copy->line = $line;
-
-        return $copy;
+        $this->code = $code;
+        return $this;
     }
 
     public function withPrev(Throwable $throwable): self
     {
-        return new static($this->message, $this->code, $throwable);
+        return (new static($this->message, $this->code, $throwable))->withFile($this->file)
+            ->withLine($this->line);
+    }
+
+    public function withLine(int $line): self
+    {
+        $this->line = $line;
+        return $this;
+    }
+
+    public function withFile(string $file): self
+    {
+        $this->file = $file;
+        return $this;
     }
 }
