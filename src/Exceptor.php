@@ -11,9 +11,9 @@ trait Exceptor
         return static::makeStatic(sprintf($format, ... $values));
     }
 
-    protected static function makeStatic(string $msg, int $code = 0, Throwable $prev = null, ... $otherArgs): self
+    protected static function makeStatic(... $ctrArgs): self
     {
-        return new static($msg, $code, $prev);
+        return new static(... $ctrArgs);
     }
     
     public function withCode(int $code): self
