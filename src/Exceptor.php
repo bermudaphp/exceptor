@@ -16,25 +16,25 @@ trait Exceptor
         return new static(... $ctrArgs);
     }
     
-    public function withCode(int $code): self
+    public function setCode(int $code): self
     {
         $this->code = $code;
         return $this;
     }
 
-    public function withPrev(Throwable $throwable): self
+    public function setPrev(Throwable $throwable): self
     {
-        return (new static($this->message, $this->code, $throwable))->withFile($this->file)
+        return (new static($this->message, $this->code, $throwable))->setFile($this->file)
             ->withLine($this->line);
     }
 
-    public function withLine(int $line): self
+    public function setLine(int $line): self
     {
         $this->line = $line;
         return $this;
     }
 
-    public function withFile(string $file): self
+    public function setFile(string $file): self
     {
         $this->file = $file;
         return $this;
