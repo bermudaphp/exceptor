@@ -6,16 +6,11 @@ use Throwable;
 
 trait Exceptor
 {
-    public static function make(string $format, string ...$values): self
+    public static function create(string $message, string ...$tokens)
     {
-        return static::makeStatic(sprintf($format, ... $values));
+        return new static(sprintf($message, ...$tokens));
     }
-
-    protected static function makeStatic(... $ctrArgs): self
-    {
-        return new static(... $ctrArgs);
-    }
-    
+ 
     public function setCode(int $code): self
     {
         $this->code = $code;
@@ -26,6 +21,12 @@ trait Exceptor
     {
         return (new static($this->message, $this->code, $throwable))->setFile($this->file)
             ->setLine($this->line);
+    }
+    
+    public function setMessage(string $message, string ...$tokens): self
+    {
+        $this->message = sprintf($message, ...$tokens);
+        return $this;
     }
 
     public function setLine(int $line): self
