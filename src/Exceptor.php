@@ -25,7 +25,7 @@ trait Exceptor
     public function setPrev(Throwable $throwable): self
     {
         return (new static($this->message, $this->code, $throwable))->setFile($this->file)
-            ->withLine($this->line);
+            ->setLine($this->line);
     }
 
     public function setLine(int $line): self
