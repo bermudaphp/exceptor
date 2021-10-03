@@ -1,0 +1,12 @@
+{
+  "name": "bermudaphp/exceptor",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Bermuda\\Exceptor\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.4 || ~8.0.0",
+  }
+}
