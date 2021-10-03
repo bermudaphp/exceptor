@@ -22,7 +22,7 @@ trait Exceptor
         return $this;
     }
 
-    public function setPrev(Throwable $throwable): self
+    public function withPrev(Throwable $throwable): self
     {
         return (new static($this->message, $this->code, $throwable))->setFile($this->file)
             ->setLine($this->line);
